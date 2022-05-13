@@ -43,7 +43,7 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 import orderTableData from "layouts/Order/data/orderTableData";
 
-function Order() {
+function OrderList() {
   const { columns, rows } = orderTableData();
 
   return (
@@ -84,4 +84,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default OrderList;

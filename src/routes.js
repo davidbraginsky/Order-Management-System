@@ -38,12 +38,14 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
+// import Billing from "layouts/billing";
+// import Notifications from "layouts/notifications";
+// import Profile from "layouts/profile";
+// import SignIn from "layouts/authentication/sign-in";
+// import SignUp from "layouts/authentication/sign-up";
 import Order from "layouts/Order/Order";
+import OrderForm from "layouts/OrderForm/OrderForm";
+import OrderList from "layouts/OrderList/OrderList";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -59,11 +61,27 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Order",
-    key: "order",
+    name: "Fullfill Order",
+    key: "order-fullfill",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/order",
+    route: "/orderfulfill",
     component: <Order />,
+  },
+  {
+    type: "collapse",
+    name: "Create Order",
+    key: "create-order",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/ordercreate",
+    component: <OrderForm />,
+  },
+  {
+    type: "collapse",
+    name: "Order List",
+    key: "order-list",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/orderlist",
+    component: <OrderList />,
   },
   {
     type: "collapse",
@@ -73,46 +91,46 @@ const routes = [
     route: "/tables",
     component: <Tables />,
   },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Billing",
+  //   key: "billing",
+  //   icon: <Icon fontSize="small">receipt_long</Icon>,
+  //   route: "/billing",
+  //   component: <Billing />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Profile",
+  //   key: "profile",
+  //   icon: <Icon fontSize="small">person</Icon>,
+  //   route: "/profile",
+  //   component: <Profile />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Sign In",
+  //   key: "sign-in",
+  //   icon: <Icon fontSize="small">login</Icon>,
+  //   route: "/authentication/sign-in",
+  //   component: <SignIn />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Sign Up",
+  //   key: "sign-up",
+  //   icon: <Icon fontSize="small">assignment</Icon>,
+  //   route: "/authentication/sign-up",
+  //   component: <SignUp />,
+  // },
 ];
 
 export default routes;
