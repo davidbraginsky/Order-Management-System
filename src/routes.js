@@ -46,6 +46,7 @@ import Tables from "layouts/tables";
 import Order from "layouts/Order/Order";
 import OrderForm from "layouts/OrderForm/OrderForm";
 import OrderList from "layouts/OrderList/OrderList";
+import ItemPanel from "layouts/ItemPanel/ItemPanel";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -82,6 +83,14 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/orderlist",
     component: <OrderList />,
+  },
+  {
+    type: "collapse",
+    name: "Add Item",
+    key: "add-item",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/additem",
+    component: <ItemPanel />,
   },
   {
     type: "collapse",
