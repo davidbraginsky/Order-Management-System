@@ -34,17 +34,36 @@ import Card from "@mui/material/Card";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+// import MDBadge from "components/MDBadge";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import DataTable from "examples/Tables/DataTable";
 
 // Data
-import orderTableData from "layouts/Order/data/orderTableData";
+// import orderTableData from "layouts/OrderList/data/orderTableData";
+
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import DB from "../../utils/firebase";
 
 function OrderList() {
-  const { columns, rows } = orderTableData();
+  const ordersColRef = collection(DB, "orders");
+
+  const [orders, setOrders] = useState([]);
+
+  const getData = async () => {
+    const response = await getDocs(ordersColRef);
+    response.forEach((doc) => {
+      const obj = {
+        ...doc.data(),
+        id: doc.id,
+      };
+      setOrders((prev) => [...prev, obj]);
+    });
+  };
+
+  useEffect(getData, []);
 
   return (
     <DashboardLayout>
@@ -64,18 +83,18 @@ function OrderList() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Create Order
+                  Order List
                 </MDTypography>
               </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
+              {orders &&
+                orders.map((order) => (
+                  <div key={order.id} className="orderContainer">
+                    <p>ID: {order.id}</p>
+                    <p>Status: {order.isCompleted === false ? "in progress" : "completed"}</p>
+                    <p>Date: {order.date}</p>
+                    <br />
+                  </div>
+                ))}
             </Card>
           </Grid>
         </Grid>

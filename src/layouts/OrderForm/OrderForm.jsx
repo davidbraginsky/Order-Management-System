@@ -55,7 +55,9 @@ function OrderForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addDoc(ordersColRef, order).then(() => console.log("order was added"));
+    const obj = { ...order, isCompleted: false, date: Date() };
+    addDoc(ordersColRef, obj);
+    setOrder({});
   };
 
   const changeHandler = (e, id) => {
@@ -69,13 +71,7 @@ function OrderForm() {
         {items.map((item) => (
           <div key={item.id} className="formBlock">
             <span>{item.title}</span>
-            <input
-              onChange={(e) => changeHandler(e, item.id)}
-              value={order.id}
-              data-title={item.title}
-              type="number"
-              id={item.id}
-            />
+            <input onChange={(e) => changeHandler(e, item.id)} value={order.id} type="number" />
           </div>
         ))}
         <button type="submit">Submit</button>
