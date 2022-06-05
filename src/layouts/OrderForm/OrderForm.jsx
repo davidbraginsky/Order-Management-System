@@ -30,18 +30,21 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // import orderTableData from "layouts/Order/data/orderTableData";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import DB from "../../utils/firebase";
+// import { object } from "prop-types";
 
 function OrderForm() {
   // const { columns, rows } = orderTableData();
 
   const [items, setItems] = useState([]);
+  const [order, setOrder] = useState({});
 
-  const colRef = collection(DB, "items");
+  const itemsColRef = collection(DB, "items");
+  const ordersColRef = collection(DB, "orders");
 
   const getData = async () => {
-    const response = await getDocs(colRef);
+    const response = await getDocs(itemsColRef);
     response.docs.forEach((doc) => {
       const newObj = { ...doc.data(), id: doc.id };
       setItems((prevArray) => [...prevArray, newObj]);
@@ -52,21 +55,12 @@ function OrderForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const inputArray = Array.from(e.target);
-    inputArray.pop();
-    const filteredArray = inputArray.filter((input) => input.value !== "");
-    console.log(filteredArray);
-
-    const orderArray = [];
-
-    filteredArray.forEach((input) => {
-      orderArray.push({ title: input.dataset.title, quantity: input.value, id: input.id });
-    });
-
-    console.log(orderArray);
+    addDoc(ordersColRef, order).then(() => console.log("order was added"));
   };
 
-  // const [data, setData] = useState([]);
+  const changeHandler = (e, id) => {
+    setOrder({ ...order, [id]: e.target.value });
+  };
 
   return (
     <DashboardLayout>
@@ -75,7 +69,13 @@ function OrderForm() {
         {items.map((item) => (
           <div key={item.id} className="formBlock">
             <span>{item.title}</span>
-            <input data-title={item.title} type="number" id={item.id} />
+            <input
+              onChange={(e) => changeHandler(e, item.id)}
+              value={order.id}
+              data-title={item.title}
+              type="number"
+              id={item.id}
+            />
           </div>
         ))}
         <button type="submit">Submit</button>
