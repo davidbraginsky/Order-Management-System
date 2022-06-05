@@ -40,6 +40,7 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
+import { Link } from "react-router-dom";
 // Data
 // import orderTableData from "layouts/OrderList/data/orderTableData";
 
@@ -89,6 +90,7 @@ function OrderList() {
               {orders &&
                 orders.map((order) => (
                   <div key={order.id} className="orderContainer">
+                    <Link to={`/test/${order.id}`}>Click Me</Link>
                     <p>ID: {order.id}</p>
                     <p>Status: {order.isCompleted === false ? "in progress" : "completed"}</p>
                     <p>Date: {order.date}</p>

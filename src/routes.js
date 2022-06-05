@@ -36,55 +36,56 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-// import Dashboard from "layouts/dashboard";
+import Dashboard from "layouts/dashboard";
 // import Tables from "layouts/tables";
 // import Billing from "layouts/billing";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
 // import SignIn from "layouts/authentication/sign-in";
 // import SignUp from "layouts/authentication/sign-up";
-// import OrderForm from "layouts/OrderForm/OrderForm";
-// import OrderList from "layouts/OrderList/OrderList";
-// import ItemPanel from "layouts/ItemPanel/ItemPanel";
+
+import OrderForm from "layouts/OrderForm/OrderForm";
+import OrderList from "layouts/OrderList/OrderList";
+import ItemPanel from "layouts/ItemPanel/ItemPanel";
 
 // import Test from "layouts/Test/Test";
 
 // @mui icons
-// import Icon from "@mui/material/Icon";
+import Icon from "@mui/material/Icon";
 
 const routes = [
-  // {
-  //   type: "collapse",
-  //   name: "Dashboard",
-  //   key: "dashboard",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/dashboard",
-  //   component: <Dashboard />,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Create Order",
-  //   key: "create-order",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/ordercreate",
-  //   component: <OrderForm />,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Orders",
-  //   key: "order-list",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/orderlist",
-  //   component: <OrderList />,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Items",
-  //   key: "add-item",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/additem",
-  //   component: <ItemPanel />,
-  // },
+  {
+    type: "collapse",
+    name: "Dashboard",
+    key: "dashboard",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/dashboard",
+    component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Create Order",
+    key: "create-order",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/ordercreate",
+    component: <OrderForm />,
+  },
+  {
+    type: "collapse",
+    name: "Orders",
+    key: "order-list",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/orderlist",
+    component: <OrderList />,
+  },
+  {
+    type: "collapse",
+    name: "Items",
+    key: "add-item",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/additem",
+    component: <ItemPanel />,
+  },
   // {
   //   type: "collapse",
   //   name: "Tables",

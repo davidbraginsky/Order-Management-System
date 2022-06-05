@@ -26,11 +26,15 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // import DataTable from "examples/Tables/DataTable";
 
+import { useParams } from "react-router-dom";
+
 function Test() {
+  const { id } = useParams();
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <p>test page</p>
+      <p>{id}</p>
     </DashboardLayout>
   );
 }
