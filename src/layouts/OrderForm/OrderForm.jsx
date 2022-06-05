@@ -29,10 +29,26 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // Data
 // import orderTableData from "layouts/Order/data/orderTableData";
 
-// import { useState } from "react";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import DB from "../../utils/firebase";
 
 function OrderForm() {
   // const { columns, rows } = orderTableData();
+
+  const [items, setItems] = useState([]);
+
+  const colRef = collection(DB, "items");
+
+  const getData = async () => {
+    const response = await getDocs(colRef);
+    response.docs.forEach((doc) => {
+      const newObj = { ...doc.data(), id: doc.id };
+      setItems((prevArray) => [...prevArray, newObj]);
+    });
+  };
+
+  useEffect(getData, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -56,18 +72,12 @@ function OrderForm() {
     <DashboardLayout>
       <DashboardNavbar />
       <form onSubmit={submitHandler}>
-        <div className="formBlock">
-          <span>Супница с крышкой 300 мл</span>
-          <input data-title="Супница с крышкой 300 мл" type="number" id="item-1" />
-        </div>
-        <div className="formBlock">
-          <span>Супница с крышкой 700 мл</span>
-          <input data-title="Супница с крышкой 700 мл" type="number" id="item-2" />
-        </div>
-        <div className="formBlock">
-          <span>Супница с крышкой 1000 мл</span>
-          <input data-title="Супница с крышкой 1000 мл" type="number" id="item-3" />
-        </div>
+        {items.map((item) => (
+          <div key={item.id} className="formBlock">
+            <span>{item.title}</span>
+            <input data-title={item.title} type="number" id={item.id} />
+          </div>
+        ))}
         <button type="submit">Submit</button>
       </form>
     </DashboardLayout>
