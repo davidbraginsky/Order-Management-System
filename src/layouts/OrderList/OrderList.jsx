@@ -90,7 +90,7 @@ function OrderList() {
               {orders &&
                 orders.map((order) => (
                   <div key={order.id} className="orderContainer">
-                    <Link to={`/test/${order.id}`}>Click Me</Link>
+                    <Link to={`/order/${order.id}`}>Click Me</Link>
                     <p>ID: {order.id}</p>
                     <p>Status: {order.isCompleted === false ? "in progress" : "completed"}</p>
                     <p>Date: {order.date}</p>

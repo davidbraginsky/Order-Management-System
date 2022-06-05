@@ -55,13 +55,13 @@ function OrderForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const obj = { ...order, isCompleted: false, date: Date() };
+    const obj = { items: order, isCompleted: false, date: Date() };
     addDoc(ordersColRef, obj);
     setOrder({});
   };
 
-  const changeHandler = (e, id) => {
-    setOrder({ ...order, [id]: e.target.value });
+  const changeHandler = (e, id, title) => {
+    setOrder({ ...order, [id]: { quantity: e.target.value, title, id } });
   };
 
   return (
@@ -71,7 +71,11 @@ function OrderForm() {
         {items.map((item) => (
           <div key={item.id} className="formBlock">
             <span>{item.title}</span>
-            <input onChange={(e) => changeHandler(e, item.id)} value={order.id} type="number" />
+            <input
+              onChange={(e) => changeHandler(e, item.id, item.title)}
+              value={order.id}
+              type="number"
+            />
           </div>
         ))}
         <button type="submit">Submit</button>

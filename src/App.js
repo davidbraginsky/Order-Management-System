@@ -46,7 +46,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
-import Test from "./layouts/Test/Test";
+import Order from "./layouts/Order/Order";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -150,8 +150,8 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="test" element={<Test />}>
-          <Route path=":id" element={<Test />} />
+        <Route path="order" element={<Order />}>
+          <Route path=":id" element={<Order />} />
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
