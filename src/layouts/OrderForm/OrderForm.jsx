@@ -1,44 +1,15 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
-// import Grid from "@mui/material/Grid";
-// import Card from "@mui/material/Card";
-
-// Material Dashboard 2 React components
-// import MDBox from "components/MDBox";
-// import MDTypography from "components/MDTypography";
-
-// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-// import DataTable from "examples/Tables/DataTable";
-
-// Data
-// import orderTableData from "layouts/Order/data/orderTableData";
-
+import "./OrderForm.css";
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import DB from "../../utils/firebase";
-// import { object } from "prop-types";
 
 function OrderForm() {
-  // const { columns, rows } = orderTableData();
-
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState({});
+  const [elementList, setElementList] = useState([{ label: "", quantity: "" }]);
 
   const itemsColRef = collection(DB, "items");
   const ordersColRef = collection(DB, "orders");
@@ -55,29 +26,63 @@ function OrderForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const obj = { items: order, isCompleted: false, date: Date() };
+    const currentDate = Date();
+    const timeStamp = currentDate.substring(4, 24);
+
+    const obj = { items: elementList, isCompleted: false, date: timeStamp };
     addDoc(ordersColRef, obj);
-    setOrder({});
+    setElementList([{ label: "", quantity: "" }]);
   };
 
-  const changeHandler = (e, id, title) => {
-    setOrder({ ...order, [id]: { quantity: e.target.value, title, id } });
+  const addNewLine = () => {
+    setElementList((prevArray) => [...prevArray, { label: "", quantity: "" }]);
+  };
+
+  const handleElementChange = (e, index) => {
+    const { id, innerText, value } = e.target;
+
+    if (id.includes("label")) {
+      const prop = id.substring(0, 5);
+      const list = [...elementList];
+      list[index][prop] = innerText;
+      setElementList(list);
+    } else if (id.includes("quantity")) {
+      const prop = id.substring(0, 8);
+      const list = [...elementList];
+      list[index][prop] = value;
+      setElementList(list);
+    }
   };
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <form onSubmit={submitHandler}>
-        {items.map((item) => (
-          <div key={item.id} className="formBlock">
-            <span>{item.title}</span>
-            <input
-              onChange={(e) => changeHandler(e, item.id, item.title)}
-              value={order.id}
+        {elementList.map((element, index) => (
+          <div key={index} className="itemElement">
+            <Autocomplete
+              disablePortal
+              value={element.label}
+              onChange={(e) => handleElementChange(e, index)}
+              id="label"
+              options={items}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Товар" />}
+            />
+            <TextField
+              onChange={(e) => handleElementChange(e, index)}
+              id={`quantity-${index}`}
+              value={element.quantity}
+              label="Количество"
+              variant="outlined"
               type="number"
             />
           </div>
         ))}
+
+        <button onClick={addNewLine} type="button">
+          Add new line
+        </button>
         <button type="submit">Submit</button>
       </form>
     </DashboardLayout>
