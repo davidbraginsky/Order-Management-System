@@ -46,7 +46,6 @@ import Dashboard from "layouts/dashboard";
 
 import OrderForm from "layouts/OrderForm/OrderForm";
 import OrderList from "layouts/OrderList/OrderList";
-import ItemPanel from "layouts/ItemPanel/ItemPanel";
 
 // import Test from "layouts/Test/Test";
 
@@ -56,7 +55,7 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
+    name: "Панель управления",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
@@ -64,7 +63,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Create Order",
+    name: "Создать заказ",
     key: "create-order",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/ordercreate",
@@ -72,20 +71,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Orders",
+    name: "Список заказов",
     key: "order-list",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/orderlist",
     component: <OrderList />,
   },
-  {
-    type: "collapse",
-    name: "Items",
-    key: "add-item",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/additem",
-    component: <ItemPanel />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Items",
+  //   key: "add-item",
+  //   icon: <Icon fontSize="small">dashboard</Icon>,
+  //   route: "/additem",
+  //   component: <ItemPanel />,
+  // },
   // {
   //   type: "collapse",
   //   name: "Tables",

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import MDButton from "components/MDButton";
 import DB from "../../utils/firebase";
 
 function OrderForm() {
@@ -28,6 +29,10 @@ function OrderForm() {
     e.preventDefault();
     const currentDate = Date();
     const timeStamp = currentDate.substring(4, 24);
+
+    if (elementList.length === 1 && elementList[0].label === "") {
+      return;
+    }
 
     const obj = { items: elementList, isCompleted: false, date: timeStamp };
     addDoc(ordersColRef, obj);
@@ -59,14 +64,14 @@ function OrderForm() {
       <DashboardNavbar />
       <form onSubmit={submitHandler}>
         {elementList.map((element, index) => (
-          <div key={index} className="itemElement">
+          <div key={element.label} className="itemElement">
             <Autocomplete
               disablePortal
               value={element.label}
               onChange={(e) => handleElementChange(e, index)}
               id="label"
               options={items}
-              sx={{ width: 300 }}
+              sx={{ width: 400, marginRight: "16px", marginBottom: "16px" }}
               renderInput={(params) => <TextField {...params} label="Товар" />}
             />
             <TextField
@@ -75,15 +80,22 @@ function OrderForm() {
               value={element.quantity}
               label="Количество"
               variant="outlined"
+              sx={{ height: "50px" }}
               type="number"
             />
           </div>
         ))}
-
-        <button onClick={addNewLine} type="button">
-          Add new line
-        </button>
-        <button type="submit">Submit</button>
+        <MDButton
+          onClick={addNewLine}
+          color="info"
+          variant="gradient"
+          sx={{ display: "block", marginBottom: "16px" }}
+        >
+          Добавить строку
+        </MDButton>
+        <MDButton onClick={submitHandler} color="info" variant="gradient">
+          Отправить
+        </MDButton>
       </form>
     </DashboardLayout>
   );

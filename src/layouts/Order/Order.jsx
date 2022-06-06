@@ -15,18 +15,17 @@ function Test() {
   useEffect(() => {
     const document = getDoc(docRef);
     document.then((content) => {
-      const { items } = content.data();
-      setOrder(items);
+      setOrder(content.data());
     });
   }, []);
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <p>Заказ: {id}</p>
-      {order &&
-        order.map((item) => (
-          <div className="itemContainer">
+      <p>Заказ от {order.date}</p>
+      {order.items &&
+        order.items.map((item) => (
+          <div key={item.label} className="itemContainer">
             <p>
               {item.label} - {item.quantity}
             </p>

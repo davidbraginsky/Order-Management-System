@@ -46,6 +46,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
+import ItemPanel from "layouts/ItemPanel/ItemPanel";
 import Order from "./layouts/Order/Order";
 
 export default function App() {
@@ -153,6 +154,7 @@ export default function App() {
         <Route path="order" element={<Order />}>
           <Route path=":id" element={<Order />} />
         </Route>
+        <Route path="/items" element={<ItemPanel />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>

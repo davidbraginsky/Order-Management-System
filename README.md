@@ -12,6 +12,7 @@ This is my attempt to create an order / inventory management system to be used i
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Usefull resources](#usefull-resources)
+  - [Bugs](#bugs)
 - [Author](#author)
 
 ## Overview
@@ -44,6 +45,10 @@ Managers should be able to:
 ### What I learned
 
 ### Usefull resources
+
+### Bugs
+
+- when additional rows are added to order form and only then begun to be fullfilled order form crashes
 
 ## Author
 
