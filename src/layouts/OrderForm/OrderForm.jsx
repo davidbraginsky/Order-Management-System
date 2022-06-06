@@ -1,44 +1,16 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
-// import Grid from "@mui/material/Grid";
-// import Card from "@mui/material/Card";
-
-// Material Dashboard 2 React components
-// import MDBox from "components/MDBox";
-// import MDTypography from "components/MDTypography";
-
-// Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-// import DataTable from "examples/Tables/DataTable";
-
-// Data
-// import orderTableData from "layouts/Order/data/orderTableData";
-
+import "./OrderForm.css";
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import MDButton from "components/MDButton";
 import DB from "../../utils/firebase";
-// import { object } from "prop-types";
 
 function OrderForm() {
-  // const { columns, rows } = orderTableData();
-
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState({});
+  const [elementList, setElementList] = useState([{ label: "", quantity: "" }]);
 
   const itemsColRef = collection(DB, "items");
   const ordersColRef = collection(DB, "orders");
@@ -55,30 +27,75 @@ function OrderForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addDoc(ordersColRef, order).then(() => console.log("order was added"));
+    const currentDate = Date();
+    const timeStamp = currentDate.substring(4, 24);
+
+    if (elementList.length === 1 && elementList[0].label === "") {
+      return;
+    }
+
+    const obj = { items: elementList, isCompleted: false, date: timeStamp };
+    addDoc(ordersColRef, obj);
+    setElementList([{ label: "", quantity: "" }]);
   };
 
-  const changeHandler = (e, id) => {
-    setOrder({ ...order, [id]: e.target.value });
+  const addNewLine = () => {
+    setElementList((prevArray) => [...prevArray, { label: "", quantity: "" }]);
+  };
+
+  const handleElementChange = (e, index) => {
+    const { id, innerText, value } = e.target;
+
+    if (id.includes("label")) {
+      const prop = id.substring(0, 5);
+      const list = [...elementList];
+      list[index][prop] = innerText;
+      setElementList(list);
+    } else if (id.includes("quantity")) {
+      const prop = id.substring(0, 8);
+      const list = [...elementList];
+      list[index][prop] = value;
+      setElementList(list);
+    }
   };
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <form onSubmit={submitHandler}>
-        {items.map((item) => (
-          <div key={item.id} className="formBlock">
-            <span>{item.title}</span>
-            <input
-              onChange={(e) => changeHandler(e, item.id)}
-              value={order.id}
-              data-title={item.title}
+        {elementList.map((element, index) => (
+          <div key={element.label} className="itemElement">
+            <Autocomplete
+              disablePortal
+              value={element.label}
+              onChange={(e) => handleElementChange(e, index)}
+              id="label"
+              options={items}
+              sx={{ width: 400, marginRight: "16px", marginBottom: "16px" }}
+              renderInput={(params) => <TextField {...params} label="Товар" />}
+            />
+            <TextField
+              onChange={(e) => handleElementChange(e, index)}
+              id={`quantity-${index}`}
+              value={element.quantity}
+              label="Количество"
+              variant="outlined"
+              sx={{ height: "50px" }}
               type="number"
-              id={item.id}
             />
           </div>
         ))}
-        <button type="submit">Submit</button>
+        <MDButton
+          onClick={addNewLine}
+          color="info"
+          variant="gradient"
+          sx={{ display: "block", marginBottom: "16px" }}
+        >
+          Добавить строку
+        </MDButton>
+        <MDButton onClick={submitHandler} color="info" variant="gradient">
+          Отправить
+        </MDButton>
       </form>
     </DashboardLayout>
   );
