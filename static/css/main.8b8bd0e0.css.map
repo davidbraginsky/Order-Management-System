@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.8b8bd0e0.css","mappings":"AAAA,iCACE,YACF,CAEA,WACE,SACF","sources":["layouts/OrderList/OrderList.css"],"sourcesContent":[".orderListContainer {\n  display: flex;\n}\n\n.orderList {\n  width: 60%;\n}\n"],"names":[],"sourceRoot":""}

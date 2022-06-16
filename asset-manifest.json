@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.css": "/Order-Management-System/static/css/main.f16fcf37.css",
-    "main.js": "/Order-Management-System/static/js/main.42ac6f9a.js",
+    "main.css": "/Order-Management-System/static/css/main.8b8bd0e0.css",
+    "main.js": "/Order-Management-System/static/js/main.fb790dad.js",
+    "static/media/bg-sign-in-basic.jpeg": "/Order-Management-System/static/media/bg-sign-in-basic.f327db1d0e4b00ba3c81.jpeg",
+    "static/media/bg-profile.jpeg": "/Order-Management-System/static/media/bg-profile.af1219a742e09fc7b612.jpeg",
+    "static/media/bg-sign-up-cover.jpeg": "/Order-Management-System/static/media/bg-sign-up-cover.30c5950b22e74f0d82ba.jpeg",
+    "static/media/bruce-mars.jpg": "/Order-Management-System/static/media/bruce-mars.8a606c4a6dab54c9ceff.jpg",
     "index.html": "/Order-Management-System/index.html",
-    "main.f16fcf37.css.map": "/Order-Management-System/static/css/main.f16fcf37.css.map",
-    "main.42ac6f9a.js.map": "/Order-Management-System/static/js/main.42ac6f9a.js.map"
+    "main.8b8bd0e0.css.map": "/Order-Management-System/static/css/main.8b8bd0e0.css.map",
+    "main.fb790dad.js.map": "/Order-Management-System/static/js/main.fb790dad.js.map"
   },
   "entrypoints": [
-    "static/css/main.f16fcf37.css",
-    "static/js/main.42ac6f9a.js"
+    "static/css/main.8b8bd0e0.css",
+    "static/js/main.fb790dad.js"
   ]
 }
