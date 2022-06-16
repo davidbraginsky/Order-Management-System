@@ -1,0 +1,7 @@
+.orderListContainer {
+  display: flex;
+}
+
+.orderList {
+  width: 60%;
+}

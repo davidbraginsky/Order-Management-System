@@ -11,15 +11,26 @@ import DB from "../../utils/firebase";
 function OrderForm() {
   const [items, setItems] = useState([]);
   const [elementList, setElementList] = useState([{ label: "", quantity: "" }]);
+  const [clientList, setClientList] = useState([]);
+  const [selectedOption, setSelectedOption] = useState({
+    title: "bar2",
+    value: "xVwEwAaqPhnL0ywm7vC8",
+  });
 
   const itemsColRef = collection(DB, "items");
   const ordersColRef = collection(DB, "orders");
+  const clientsColRef = collection(DB, "client");
 
   const getData = async () => {
     const response = await getDocs(itemsColRef);
     response.docs.forEach((doc) => {
       const newObj = { ...doc.data(), id: doc.id };
       setItems((prevArray) => [...prevArray, newObj]);
+    });
+    const clientResponse = await getDocs(clientsColRef);
+    clientResponse.docs.forEach((doc) => {
+      const newObj = { ...doc.data(), id: doc.id };
+      setClientList((prevArray) => [...prevArray, newObj]);
     });
   };
 
@@ -34,7 +45,7 @@ function OrderForm() {
       return;
     }
 
-    const obj = { items: elementList, isCompleted: false, date: timeStamp };
+    const obj = { items: elementList, isCompleted: false, date: timeStamp, client: selectedOption };
     addDoc(ordersColRef, obj);
     setElementList([{ label: "", quantity: "" }]);
   };
@@ -59,10 +70,27 @@ function OrderForm() {
     }
   };
 
+  const selectChangeHandler = (e) => {
+    const { value, innerText } = e.target.selectedOptions[0];
+    const optionObj = {
+      value,
+      title: innerText,
+    };
+    setSelectedOption(optionObj);
+  };
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <form onSubmit={submitHandler}>
+        <span>Кто заказывает:</span>
+        <select value={selectedOption.value} onChange={selectChangeHandler}>
+          {clientList.map((item) => (
+            <option value={item.id} key={item.id}>
+              {item.title}
+            </option>
+          ))}
+        </select>
         {elementList.map((element, index) => (
           <div key={element.label} className="itemElement">
             <Autocomplete

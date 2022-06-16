@@ -46,9 +46,20 @@ Managers should be able to:
 
 ### Usefull resources
 
+### Todo
+
+- orders can be filtered by
+  - bar
+  - date
+  - completed status
+
 ### Bugs
 
 - when additional rows are added to order form and only then begun to be fullfilled order form crashes
+- make animation when order was succesfull
+- make checks that order is completed before sending to DB
+- make styles for responsive
+- add loader while data is fetched
 
 ## Author
 
