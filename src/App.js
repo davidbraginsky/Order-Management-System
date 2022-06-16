@@ -49,6 +49,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 import ItemPanel from "layouts/ItemPanel/ItemPanel";
 import Order from "./layouts/Order/Order";
 import SignUp from "./layouts/authentication/sign-up";
+import Profile from "./layouts/profile";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -157,6 +158,7 @@ export default function App() {
         </Route>
         <Route path="/items" element={<ItemPanel />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </ThemeProvider>
