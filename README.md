@@ -49,9 +49,14 @@ Managers should be able to:
 ### Todo
 
 - orders can be filtered by
-  - bar
+
+  - bar ++
   - date
   - completed status
+
+- users can log in to their respective accounts
+- loaders see only orders for their respective floor (by default)
+- only admin can go into admin panel
 
 ### Bugs
 
@@ -60,6 +65,14 @@ Managers should be able to:
 - make checks that order is completed before sending to DB
 - make styles for responsive
 - add loader while data is fetched
+
+### Users
+
+- bar2@tsum.ru / bar2tsum
+- bar4@tsum.ru / bar4tsum
+- loader2@tsum.ru / loader2tsum
+- loader4@tsum.ru / loader4tsum
+- admin@tsum.ru / admin123tsum
 
 ## Author
 

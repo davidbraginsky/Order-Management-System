@@ -6,7 +6,7 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDButton from "components/MDButton";
-import DB from "../../utils/firebase";
+import { DB } from "../../utils/firebase";
 
 function OrderForm() {
   const [items, setItems] = useState([]);

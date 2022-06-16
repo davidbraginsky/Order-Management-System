@@ -3,7 +3,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import DB from "../../utils/firebase";
+import { DB } from "../../utils/firebase";
 
 function Test() {
   const { id } = useParams();

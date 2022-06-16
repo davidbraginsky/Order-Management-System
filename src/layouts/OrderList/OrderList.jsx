@@ -7,7 +7,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import DB from "../../utils/firebase";
+import { DB } from "../../utils/firebase";
 import "./OrderList.css";
 
 function OrderList() {

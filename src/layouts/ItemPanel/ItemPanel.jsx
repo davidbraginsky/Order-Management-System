@@ -1,6 +1,6 @@
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import DB from "utils/firebase";
+import { DB } from "utils/firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 

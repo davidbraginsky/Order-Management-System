@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -26,6 +26,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
+// eslint-disable-next-line react/prop-types
 function DefaultNavbarLink({ icon, name, route, light }) {
   return (
     <MDBox
@@ -59,11 +60,11 @@ function DefaultNavbarLink({ icon, name, route, light }) {
 }
 
 // Typechecking props for the DefaultNavbarLink
-DefaultNavbarLink.propTypes = {
-  icon: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  route: PropTypes.string.isRequired,
-  light: PropTypes.bool.isRequired,
-};
+// DefaultNavbarLink.propTypes = {
+//   icon: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   route: PropTypes.string.isRequired,
+//   light: PropTypes.bool.isRequired,
+// };
 
 export default DefaultNavbarLink;
