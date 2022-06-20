@@ -4,6 +4,8 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+// import DataTable from "examples/Tables/DataTable";
+import MDBadge from "components/MDBadge";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -74,6 +76,11 @@ function OrderList() {
                         <Link to={`/order/${order.id}`}>
                           Заказ от {order.date} для {order.client.title}
                         </Link>
+                        {order.isCompleted ? (
+                          <MDBadge color="success" badgeContent="готов" container />
+                        ) : (
+                          <MDBadge color="info" badgeContent="в работе" container />
+                        )}
                         <br />
                       </div>
                     ))}

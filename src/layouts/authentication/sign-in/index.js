@@ -29,6 +29,10 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useContext, useEffect } from "react";
+import UserContext from "context/UserContext";
+
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../utils/firebase";
 
 function Basic() {
@@ -38,6 +42,14 @@ function Basic() {
     const password = e.target[2].value;
     signInWithEmailAndPassword(auth, email, password).then((cred) => console.log(cred.user));
   };
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/profile", { replace: true });
+    }
+  });
   return (
     <BasicLayout image={bgImage}>
       <Card>

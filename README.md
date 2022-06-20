@@ -77,3 +77,23 @@ Managers should be able to:
 ## Author
 
 [@davidbraginsky](https://github.com/davidbraginsky)
+
+                  `{/* <DataTable
+                    table={{
+                      columns: [
+                        { Header: "client", accessor: "client", width: "25%" },
+                        { Header: "date", accessor: "date", width: "30%" },
+                        { Header: "status", accessor: "status" },
+                      ],
+                      rows: testMap,
+                    }}
+                  /> */}
+
+                    // const testMap = orders.map((item) => {// const obj = { client: item.client.title, date: item.date };
+// if (item.isCompleted) {
+// obj.status = "готов";
+// } else {
+// obj.status = "в работе";
+// }
+// return obj;
+// });`

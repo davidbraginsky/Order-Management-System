@@ -1,0 +1,9 @@
+.itemContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.itemsWrapper {
+  width: 600px;
+}

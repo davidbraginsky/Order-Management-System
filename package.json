@@ -40,10 +40,11 @@
     "react-table": "7.7.0",
     "stylis": "4.0.13",
     "stylis-plugin-rtl": "2.1.1",
+    "uuid": "^8.3.2",
     "web-vitals": "2.1.4",
     "yup": "0.32.11"
   },
-  "homepage": "https://davidbraginsky.github.io/Order-Management-System/",
+  "homepage": "http://codesandbox.ru/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+// import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -52,6 +53,7 @@ import Order from "./layouts/Order/Order";
 import SignUp from "./layouts/authentication/sign-up";
 import SignIn from "./layouts/authentication/sign-in";
 import Profile from "./layouts/profile";
+import Item from "./layouts/Item/Item";
 
 import { UserProvider } from "./context/UserContext";
 
@@ -161,11 +163,14 @@ export default function App() {
           <Route path="order" element={<Order />}>
             <Route path=":id" element={<Order />} />
           </Route>
+          <Route path="item" element={<Item />}>
+            <Route path=":id" element={<Item />} />
+          </Route>
           <Route path="/items" element={<ItemPanel />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/*" element={<SignIn />} />
         </Routes>
       </ThemeProvider>
     </UserProvider>

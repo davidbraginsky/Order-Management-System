@@ -36,25 +36,26 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
+// import Dashboard from "layouts/dashboard";
 // import Tables from "layouts/tables";
 // import Billing from "layouts/billing";
 // import Notifications from "layouts/notifications";
 import OrderForm from "layouts/OrderForm/OrderForm";
 import OrderList from "layouts/OrderList/OrderList";
+import ItemPanel from "layouts/ItemPanel/ItemPanel";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 const routes = [
-  {
-    type: "collapse",
-    name: "Панель управления",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Панель управления",
+  //   key: "dashboard",
+  //   icon: <Icon fontSize="small">dashboard</Icon>,
+  //   route: "/dashboard",
+  //   component: <Dashboard />,
+  // },
   {
     type: "collapse",
     name: "Создать заказ",
@@ -70,6 +71,14 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/orderlist",
     component: <OrderList />,
+  },
+  {
+    type: "collapse",
+    name: "Список товаров",
+    key: "item-list",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/itempanel",
+    component: <ItemPanel />,
   },
   // {
   //   type: "collapse",

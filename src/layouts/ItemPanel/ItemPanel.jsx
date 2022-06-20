@@ -3,6 +3,8 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { DB } from "utils/firebase";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./ItemPanel.css";
 
 function ItemPanel() {
   const itemColRef = collection(DB, "items");
@@ -41,7 +43,12 @@ function ItemPanel() {
         <input type="text" value={item} onChange={changeHandler} />
         <button type="submit">Submit</button>
       </form>
-      {itemList && itemList.map((itemElement) => <p key={itemElement.id}>{itemElement.label}</p>)}
+      {itemList &&
+        itemList.map((itemElement) => (
+          <Link className="itemLink" to={`/item/${itemElement.id}`}>
+            {itemElement.label}
+          </Link>
+        ))}
     </DashboardLayout>
   );
 }
